@@ -15,21 +15,7 @@ export default{
     
 
 
-  //   $.ajax({
-  //     url:"http://localhost:3000/user/account/register/",
-  //     type:"post",
-  //     data:{
-  //       username:"yukio",
-  //       password:"yukio0331",
-  //       confirmedPassword:"yukio0331",
-  //     },
-  //     success(resp){
-  //       console.log(resp);
-  //     },
-  //     error(resp){
-  //       console.log(resp);
-  //     }
-  //   })
+  
   }
 }
 </script>
