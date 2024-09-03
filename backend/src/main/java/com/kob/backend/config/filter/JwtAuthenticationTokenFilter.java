@@ -35,7 +35,8 @@ public class JwtAuthenticationTokenFilter extends OncePerRequestFilter {
         }
 
         token = token.substring(7);
-
+//
+        //
         String userid;
         try {
             Claims claims = JwtUtil.parseJWT(token);
@@ -44,7 +45,8 @@ public class JwtAuthenticationTokenFilter extends OncePerRequestFilter {
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
-
+//
+        //
         User user = userMapper.selectById(Integer.parseInt(userid));
 
         if (user == null) {
