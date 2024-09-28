@@ -1,0 +1,150 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="7b0fe310-6bc6-4795-8225-38f573314162" name="更改" comment="">
+      <change afterPath="$PROJECT_DIR$/.idea/KOB.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/encodings.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/jarRepositories.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/uiDesigner.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backendcloud/botrunningsystem/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backendcloud/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/backendcloud/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/web/jsconfig.json" beforeDir="false" afterPath="$PROJECT_DIR$/web/jsconfig.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/web/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/web/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/web/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/web/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/web/src/App.vue" beforeDir="false" afterPath="$PROJECT_DIR$/web/src/App.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/web/src/assets/scripts/GameMap.js" beforeDir="false" afterPath="$PROJECT_DIR$/web/src/assets/scripts/GameMap.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/web/src/assets/scripts/Snake.js" beforeDir="false" afterPath="$PROJECT_DIR$/web/src/assets/scripts/Snake.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/web/src/components/GameMap.vue" beforeDir="false" afterPath="$PROJECT_DIR$/web/src/components/GameMap.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/web/src/components/NavBar.vue" beforeDir="false" afterPath="$PROJECT_DIR$/web/src/components/NavBar.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/web/src/router/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/web/src/router/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/web/src/store/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/web/src/store/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/web/src/views/pk/PkIndexView.vue" beforeDir="false" afterPath="$PROJECT_DIR$/web/src/views/pk/PkIndexView.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/web/src/views/user/bots/UserBotIndexView.vue" beforeDir="false" afterPath="$PROJECT_DIR$/web/src/views/user/bots/UserBotIndexView.vue" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Class" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+    <option name="ROOT_SYNC" value="SYNC" />
+  </component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 8
+}</component>
+  <component name="ProjectId" id="2m3VerqUcGgPajmOFDoZEWiXxcI" />
+  <component name="ProjectLevelVcsManager">
+    <ConfirmationsSetting value="1" id="Add" />
+  </component>
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RequestMappingsPanelOrder0": "0",
+    "RequestMappingsPanelOrder1": "1",
+    "RequestMappingsPanelWidth0": "75",
+    "RequestMappingsPanelWidth1": "75",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "Spring Boot.BotRunningSystemApplication.executor": "Run",
+    "git-widget-placeholder": "main",
+    "kotlin-language-version-configured": "true",
+    "last_opened_file_path": "/Users/ian/Desktop/KOB/backendcloud/botrunningsystem/src/main/java/com/KOB/botrunningsystem/config",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "onboarding.tips.debug.path": "/Users/ian/Desktop/KOB/backendcloud/botrunningsystem/src/main/java/com/KOB/botrunningsystem/Main.java",
+    "project.structure.last.edited": "模块",
+    "project.structure.proportion": "0.15",
+    "project.structure.side.proportion": "0.2",
+    "settings.editor.selected.configurable": "preferences.pluginManager",
+    "vue.rearranger.settings.migration": "true"
+  }
+}]]></component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/backendcloud/botrunningsystem/src/main/java/com/KOB/botrunningsystem/config" />
+    </key>
+    <key name="MoveClassesOrPackagesDialog.RECENTS_KEY">
+      <recent name="com.KOB.botrunningsystem.controller.service" />
+    </key>
+  </component>
+  <component name="RunManager">
+    <configuration name="BotRunningSystemApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" temporary="true" nameIsGenerated="true">
+      <module name="botrunningsystem" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="com.KOB.botrunningsystem.BotRunningSystemApplication" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.KOB.botrunningsystem.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Spring Boot.BotRunningSystemApplication" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="SharedIndexes">
+    <attachedChunks>
+      <set>
+        <option value="bundled-jdk-9823dce3aa75-b114ca120d71-intellij.indexing.shared.core-IU-242.20224.300" />
+        <option value="bundled-js-predefined-d6986cc7102b-410509235cf1-JavaScript-IU-242.20224.300" />
+      </set>
+    </attachedChunks>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="应用程序级" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="默认任务">
+      <changelist id="7b0fe310-6bc6-4795-8225-38f573314162" name="更改" comment="" />
+      <created>1726305344450</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1726305344450</updated>
+      <workItem from="1726305345607" duration="57000" />
+      <workItem from="1727061522951" duration="546000" />
+      <workItem from="1727062340132" duration="976000" />
+      <workItem from="1727072049662" duration="2717000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/botrunningsystem/src/main/java/com/KOB/botrunningsystem/Main.java</url>
+          <line>13</line>
+          <option name="timeStamp" value="1" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
+  </component>
+</project>
