@@ -1,6 +1,6 @@
-package com.KOB.botrunningsystem.controller;
+package com.kob.botrunningsystem.controller;
 
-import com.KOB.botrunningsystem.service.BotRunningService;
+import com.kob.botrunningsystem.service.BotRunningService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.util.MultiValueMap;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -13,12 +13,11 @@ import java.util.Objects;
 public class BotRunningController {
     @Autowired
     private BotRunningService botRunningService;
-
     @PostMapping("/bot/add/")
     public String addBot(@RequestParam MultiValueMap<String, String> data) {
         Integer userId = Integer.parseInt(Objects.requireNonNull(data.getFirst("user_id")));
-        String botCode = Objects.requireNonNull(data.getFirst("bot_code"));
-        String input = Objects.requireNonNull(data.getFirst("input"));
-        return botRunningService.addBot(userId, botCode, input);
+        String botCode = data.getFirst("bot_code");
+        String input = data.getFirst("input");
+        return botRunningService.add(userId, botCode, input);
     }
 }

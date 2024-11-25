@@ -1,4 +1,4 @@
-package com.KOB.botrunningsystem.config;
+package com.kob.botrunningsystem.config;
 
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.HttpMethod;
@@ -21,3 +21,4 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .anyRequest().authenticated();
     }
 }
+

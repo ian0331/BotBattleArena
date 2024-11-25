@@ -1,4 +1,4 @@
-import $ from "jquery";
+import $ from 'jquery'
 
 export default {
     state: {
@@ -7,9 +7,7 @@ export default {
         photo: "",
         token: "",
         is_login: false,
-        pulling_info: true,//是否正在拉取用户信息
     },
-    
     getters: {
     },
     mutations: {
@@ -28,19 +26,16 @@ export default {
             state.photo = "";
             state.token = "";
             state.is_login = false;
-        },
-        updatePullingInfo(state, pulling_info) {
-            state.pulling_info = pulling_info;
-        },
+        }
     },
     actions: {
         login(context, data) {
             $.ajax({
-                url: "http://localhost:3000/user/account/token/",
+                url: "http://127.0.0.1:3000/user/account/token/",
                 type: "post",
                 data: {
                     username: data.username,
-                    password: data.password
+                    password: data.password,
                 },
                 success(resp) {
                     if (resp.error_message === "success") {
@@ -58,7 +53,7 @@ export default {
         },
         getinfo(context, data) {
             $.ajax({
-                url: "http://localhost:3000/user/account/info/",
+                url: "http://127.0.0.1:3000/user/account/info/",
                 type: "get",
                 headers: {
                     Authorization: "Bearer " + context.state.token,
@@ -77,10 +72,10 @@ export default {
                 error(resp) {
                     data.error(resp);
                 }
-            });
+            })
         },
         logout(context) {
-            localStorage.removeItem("jwt_token");
+            localStorage.removeItem("jwt_token")
             context.commit("logout");
         }
     },

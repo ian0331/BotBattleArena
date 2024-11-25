@@ -1,5 +1,5 @@
-package com.KOB.botrunningsystem.service;
+package com.kob.botrunningsystem.service;
 
 public interface BotRunningService {
-    String addBot(Integer userId, String botCode, String Input);
+    String add(Integer userId, String botCode, String input);
 }

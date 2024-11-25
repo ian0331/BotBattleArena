@@ -1,128 +1,223 @@
 import { AcGameObject } from "./AcGameObject";
-import { Snake } from "./Snake";
 import { Wall } from "./Wall";
+import { Snake } from './Snake';
+
 export class GameMap extends AcGameObject {
-  constructor(ctx, parent,store) {
-    super();
+    constructor(ctx, parent, store) {
+        super();
 
-    this.ctx = ctx;
-    this.parent = parent;
-    this.store= store;
-    this.L = 0;
+        this.ctx = ctx;
+        this.parent = parent;
+        this.store = store;
+        this.L = 0;
 
-    this.rows = 13;
-    this.cols = 14;
+        this.rows = 13;
+        this.cols = 14;
 
-    this.inner_walls_count = 10;
-    this.walls = [];
+        this.inner_walls_count = 20;
+        this.walls = [];
 
-    this.snakes = [
-      new Snake({ id: 0, color: "#4876ec", r: this.rows - 2, c: 1 }, this),
-      new Snake({ id: 1, color: "#f94848", r: 1, c: this.cols - 2 }, this),
-    ];
+        this.snakes = [
+            new Snake({ id: 0, color: "#4876EC", r: this.rows - 2, c: 1 }, this),
+            new Snake({ id: 1, color: "#F94848", r: 1, c: this.cols - 2 }, this),
+        ];
+    }
+// 在GameMap类中添加
+    zoomIn() {
+        // 实现放大逻辑
+        this.scale *= 1.2;
+        this.render();
+}
 
-    
-  }
-  
-  create_walls() {
-    const g = this.store.state.pk.gamemap;
-    for (let r = 0; r < this.rows; r++) {
-      for (let c = 0; c < this.cols; c++) {
-        if (g[r][c]) {
-          this.walls.push(new Wall(r, c, this));
+zoomOut() {
+    // 实现缩小逻辑
+    this.scale *= 0.8;
+        this.render();
+    }
+
+    create_walls() {
+        const g = this.store.state.pk.gamemap;
+
+        for (let r = 0; r < this.rows; r++) {
+            for (let c = 0; c < this.cols; c++) {
+                if (g[r][c]) {
+                    this.walls.push(new Wall(r, c, this));
+                }
+            }
         }
-      }
     }
-    return true;
-  }
 
-  add_listening_events() {
-    this.ctx.canvas.focus();
-    this.ctx.canvas.addEventListener("keydown", e => {
-      let d = -1; // 0,1,2,3
-      if (e.key === "w") {
-        d = 0;
-      } else if (e.key === 'd') {
-        d = 1;
-      } else if (e.key === 's') {
-        d = 2;
-      } else if (e.key === 'a') {
-        d = 3;
-      }
-      if(d>=0){
-        this.store.state.pk.socket.send(JSON.stringify({
-          event:"move",
-          direction:d
-        }));
-      }
-    });
-  }
+    add_listening_events() {
+        if(this.store.state.record.is_record) {
+            let k = 0;
 
-  start() {
-    this.create_walls();
-    this.add_listening_events();
-  }
-  update_size() {
-    this.L = parseInt(
-      Math.min(
-        this.parent.clientWidth / this.cols,
-        this.parent.clientHeight / this.rows
-      )
-    );
-    this.ctx.canvas.width = this.cols * this.L;
-    this.ctx.canvas.height = this.rows * this.L;
-  }
+            const a_steps = this.store.state.record.a_steps;
+            const b_steps = this.store.state.record.b_steps;
+            const loser = this.store.state.record.record_loser;
+            const [snake0, snake1] = this.snakes;
+            const interval_id = setInterval(() => {
+                if (k >= a_steps.length - 1) {
+                    if (loser === "all" || loser === "A") {
+                        snake0.status = "die";
+                    }
+                    if (loser === "all" || loser === "B") {
+                        snake1.status = "die";
+                    }
+                    clearInterval(interval_id);
+                } else {
+                    snake0.set_direction(parseInt(a_steps[k]));
+                    snake1.set_direction(parseInt(b_steps[k]));
+                }
+                k++;
+            }, 300);
+        } else {
+            this.ctx.canvas.focus();
+            let d = -1;
+            this.ctx.canvas.addEventListener("keydown", e => {
+                if (e.key === 'w') d = 0;
+                else if (e.key === 'd') d = 1;
+                else if (e.key === 's') d = 2;
+                else if (e.key === 'a') d = 3;
 
-  check_ready() { //检查是否所有蛇都准备好了
-    for (const snake of this.snakes) {
-      if (snake.status !== "idle") {
-        return false;
-      }
-      if (snake.direction === -1) {
-        return false;
-      }
+                if (d >= 0) {
+                    this.store.state.pk.socket.send(JSON.stringify({
+                        event: "move",
+                        direction: d,
+                    }))
+                }
+            });
+        }
+        
     }
-    return true;
-  }
-  next_step() {//让两条蛇进入下一回合
-    for (const snake of this.snakes) {
-      snake.next_step();
-    }
-  }
 
-  check_valid(cell) {
-    for (const wall of this.walls) {
-      if (wall.r === cell.r && wall.c === cell.c)
-        return false;
-    }
-    for (const snake of this.snakes) {
-      let k = snake.cells.length;
-      if (!snake.check_tail_increasing()) {
-        k--;
-      }
-      for (let i = 0; i < k; i++) {
-        if (snake.cells[i].r === cell.r && snake.cells[i].c === cell.c)
-          return false;
-      }
-    }
-    return true;
-  }
+    start() {
+        this.create_walls();
 
-  update() {
-    this.update_size();
-    if (this.check_ready()) {
-      this.next_step();
+        this.add_listening_events();
     }
-    this.render();
-  }
-  render() {
-    const color_even = "#00cc00";
-    const color_odd = "#04A604";
-    for (let i = 0; i < this.rows; i++) {
-      for (let j = 0; j < this.cols; j++) {
-        this.ctx.fillStyle = (i + j) % 2 === 0 ? color_even : color_odd;
-        this.ctx.fillRect(j * this.L, i * this.L, this.L, this.L);
-      }
+
+    update_size() {
+        this.L = parseInt(Math.min(this.parent.clientWidth / this.cols, this.parent.clientHeight / this.rows));
+        this.ctx.canvas.width = this.L * this.cols;
+        this.ctx.canvas.height = this.L * this.rows;
     }
-  }
+
+    check_ready() {  // 判断两条蛇是否都准备好下一回合了
+        for (const snake of this.snakes) {
+            if (snake.status !== "idle") return false;
+            if (snake.direction === -1) return false;
+        }
+        return true;
+    }
+
+    next_step() {  // 让两条蛇进入下一回合
+        for (const snake of this.snakes) {
+            snake.next_step();
+        }
+    }
+
+    check_valid(cell) {  // 检测目标位置是否合法：没有撞到两条蛇的身体和障碍物
+        for (const wall of this.walls) {
+            if (wall.r === cell.r && wall.c === cell.c)
+                return false;
+        }
+
+        for (const snake of this.snakes) {
+            let k = snake.cells.length;
+            if (!snake.check_tail_increasing()) {  // 当蛇尾会前进的时候，蛇尾不要判断
+                k--;
+            }
+            for (let i = 0; i < k; i++) {
+                if (snake.cells[i].r === cell.r && snake.cells[i].c === cell.c)
+                    return false;
+            }
+        }
+
+        return true;
+    }
+
+    update() {
+        this.update_size();
+        if (this.check_ready()) {
+            this.next_step();
+        }
+        this.render();
+    }
+
+    render() {
+        // 清除画布
+        this.ctx.clearRect(0, 0, this.ctx.canvas.width, this.ctx.canvas.height);
+        
+        const color_even = "#B8E2F2", color_odd = "#A8D8E8";
+        
+        // 绘制基础棋盘格
+        for (let r = 0; r < this.rows; r++) {
+            for (let c = 0; c < this.cols; c++) {
+                const gradient = this.ctx.createLinearGradient(
+                    c * this.L, 
+                    r * this.L, 
+                    (c + 1) * this.L, 
+                    (r + 1) * this.L
+                );
+                
+                if ((r + c) % 2 == 0) {
+                    gradient.addColorStop(0, color_even);
+                    gradient.addColorStop(1, "#AAD9EF");
+                } else {
+                    gradient.addColorStop(0, color_odd);
+                    gradient.addColorStop(1, "#9CCFE5");
+                }
+                
+                this.ctx.fillStyle = gradient;
+                this.ctx.fillRect(c * this.L, r * this.L, this.L, this.L);
+            }
+        }
+    
+        // 绘制网格线
+        this.ctx.strokeStyle = "rgba(255, 255, 255, 0.15)";
+        this.ctx.lineWidth = 0.5;
+        
+        // 绘制横向网格线
+        for (let r = 1; r < this.rows; r++) {
+            this.ctx.beginPath();
+            this.ctx.moveTo(0, r * this.L);
+            this.ctx.lineTo(this.cols * this.L, r * this.L);
+            this.ctx.stroke();
+        }
+        
+        // 绘制纵向网格线
+        for (let c = 1; c < this.cols; c++) {
+            this.ctx.beginPath();
+            this.ctx.moveTo(c * this.L, 0);
+            this.ctx.lineTo(c * this.L, this.rows * this.L);
+            this.ctx.stroke();
+        }
+    
+        // 重置阴影设置，避免影响其他元素
+        this.ctx.shadowColor = 'transparent';
+        this.ctx.shadowBlur = 0;
+        this.ctx.shadowOffsetX = 0;
+        this.ctx.shadowOffsetY = 0;
+    
+        // 绘制墙壁
+        for (const wall of this.walls) {
+            wall.render();
+        }
+    
+        // 绘制蛇
+        for (const snake of this.snakes) {
+            snake.render();
+        }
+    
+        // 绘制外边框
+        this.ctx.strokeStyle = "rgba(255, 255, 255, 0.3)";
+        this.ctx.lineWidth = 3;
+        this.ctx.strokeRect(2, 2, this.cols * this.L - 4, this.rows * this.L - 4);
+    
+        // 添加整体阴影效果
+        this.ctx.shadowColor = 'rgba(0, 0, 0, 0.1)';
+        this.ctx.shadowBlur = 5;
+        this.ctx.shadowOffsetX = 2;
+        this.ctx.shadowOffsetY = 2;
+    }
 }
